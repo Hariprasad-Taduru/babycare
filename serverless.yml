@@ -1,0 +1,34 @@
+service: babycare
+
+frameworkVersion: ">=1.2.0 <2.0.0"
+
+custom:
+  config: ${file(./config/${self:provider.stage}.json)}
+
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  timeout: 600
+  stage: ${opt:stage, 'prod'}
+  region: ${self:custom.config.region}
+  deploymentBucket:
+    name: ${self:custom.config.bucket}
+    blockPublicAccess: true
+  deploymentPrefix: taduru
+  on_failure: ROLLBACK
+  resourcePolicy:
+    - Effect: Allow
+      Principal: '*'
+      Action: '*'
+  environment:
+    ST_API_URL: ${self:custom.config.url}
+
+functions:
+  main:
+    name: babycare-${self:provider.stage}
+    handler: babycare.handler
+    package:
+      include:
+        - babycare.js
+        - node_modules/**
