@@ -1,0 +1,25 @@
+{
+  "name": "taduru-babycare",
+  "version": "1.0.0",
+  "description": "A smartapp for notifying when baby cries.",
+  "main": "babycare.js",
+  "author": "Hariprasad Taduru",
+  "license": "ISC",
+  "keywords": [
+    "smartthings",
+    "samsung",
+    "smartapps",
+    "babycare"
+  ],
+  "scripts": {
+    "start": "node ./babycare.js",
+    "lint": "eslint --ignore-path .gitignore .",
+    "lint:fix": "eslint --fix --ignore-path .gitignore .",
+    "zip": "if [ ! -d ./out ]; then \nmkdir out\nelse\nrm -r ./out\nfi && zip -r ./out/${PWD##*/} ."
+  },
+  "dependencies": {
+    "request": "2.79.0",
+    "aws-lambda": "^0.1.2",
+    "config": "^1.26.2"
+  }
+}
