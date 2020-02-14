@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "request": "2.79.0",
-    "aws-lambda": "^0.1.2",
+    "aws-lambda": "^1.0.5",
     "config": "^1.26.2"
   }
 }
